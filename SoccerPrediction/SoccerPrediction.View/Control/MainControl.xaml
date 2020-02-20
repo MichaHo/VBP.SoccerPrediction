@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="SoccerPrediction.View.MainControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SoccerPrediction.View"
+             xmlns:vm="clr-namespace:SoccerPrediction.ViewModel;assembly=SoccerPrediction.ViewModel"
+             xmlns:animatedControl="clr-namespace:SoccerPrediction.AnimatedContentControl;assembly=SoccerPrediction.AnimatedContentControl"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:MainWorkspace/>
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Expander Grid.Column="0" Style="{StaticResource ExpanderStyle}" IsExpanded="True">
+            <Expander.Header>
+                <TextBlock Text="Side Menu">
+                    <TextBlock.LayoutTransform>
+                        <RotateTransform Angle="270"/>
+                    </TextBlock.LayoutTransform>
+                </TextBlock>
+            </Expander.Header>
+            <Border BorderBrush="{StaticResource WindowBorderBrush}" BorderThickness="1" CornerRadius="5">
+                <StackPanel Margin="10">
+                    <Button Content="Ranglisten" Height="50" Margin="0,0,0,5"/>
+                    <Button Content="Stammdaten" Margin="0,0,0,5" />
+                    <Button Content="Tipps" Height="50" Margin="0,0,0,5"/>
+                    <Button Content="Ergebnisse" Height="50" Margin="0,0,0,5"/>
+                    <Button Content="Export" Height="50" Margin="0,0,0,5"/>
+                    <Button Content="Drucken" Height="50" Margin="0,0,0,5"/>
+                </StackPanel>
+            </Border>
+        </Expander>
+        <Border Grid.Column="1" BorderBrush="{StaticResource WindowBorderBrush}" BorderThickness="1" CornerRadius="5" Margin="5,0,0,0">
+            <animatedControl:AnimatedContentControl Content="{Binding CurrentContent}" AnimationType="SlideLeft" AnimationDuration="0:0:0.8" EaseAnimation="True"/>
+        </Border>
+    </Grid>
+</UserControl>
