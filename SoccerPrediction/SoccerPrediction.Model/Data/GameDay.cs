@@ -9,7 +9,7 @@ namespace SoccerPrediction.Model
     public class GameDay : ModelBase, ILogicalDelete, ILogicalTimestamp
     {
         [Key]
-        public virtual int Id { get; set; }
+        public virtual Guid Id { get; set; } = new Guid();
         public virtual DateTime Date { get; set; }
 
         public virtual bool DeletedFlag { get; set; }

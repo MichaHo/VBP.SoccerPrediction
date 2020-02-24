@@ -9,7 +9,7 @@ namespace SoccerPrediction.Model
     public class Person : ModelBase, ILogicalDelete, ILogicalTimestamp
     {
         [Key]
-        public virtual int Id { get; set; }
+        public virtual Guid Id { get; set; } = new Guid();
         public virtual string FirstName { get; set; }
         public virtual string LastName { get; set; }
         public virtual int TotalPoints { get; set; }

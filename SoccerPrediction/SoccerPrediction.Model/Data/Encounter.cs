@@ -12,7 +12,7 @@ namespace SoccerPrediction.Model.Data
     {
 
         [Key]
-        public virtual int Id { get; set; }
+        public virtual Guid Id { get; set; } = new Guid();
         public virtual int GameDayId { get; set; }
         public virtual int TeamHomeId { get; set; }
         public virtual int TeamGuestId { get; set; }

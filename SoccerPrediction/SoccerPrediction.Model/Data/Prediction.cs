@@ -11,7 +11,7 @@ namespace SoccerPrediction.Model.Data
     public class Prediction : ModelBase, ILogicalDelete, ILogicalTimestamp
     {
         [Key]
-        public virtual int Id { get; set; }
+        public virtual Guid Id { get; set; } = new Guid();
         public virtual int PersonId { get; set; }
         public virtual int GameDayId { get; set; }
         public virtual int EncounterId { get; set; }

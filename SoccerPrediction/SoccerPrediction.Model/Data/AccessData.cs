@@ -6,7 +6,7 @@ namespace SoccerPrediction.Model
     public class AccessData : ModelBase, ILogicalDelete, ILogicalTimestamp
     {
         [Key]
-        public virtual int Id { get; set; }
+        public virtual Guid Id { get; set; } = new Guid();
 
         public virtual string UserName { get; set; }
         public virtual string EncryptedPassword { get; set; }
