@@ -17,17 +17,17 @@ namespace SoccerPrediction.Model.Data
         /// <summary>
         /// Verweis auf den Spieltag
         /// </summary>
-        public virtual int GameDayId { get; set; }
+        public virtual Guid GameDayId { get; set; }
 
         /// <summary>
         /// Verweis auf das HeimTeam
         /// </summary>
-        public virtual int TeamHomeId { get; set; }
+        public virtual Guid TeamHomeId { get; set; }
 
         /// <summary>
         /// Verweis auf das GastTeam
         /// </summary>
-        public virtual int TeamGuestId { get; set; }
+        public virtual Guid TeamGuestId { get; set; }
 
         /// <summary>
         /// Ergebnis des HeimTeams
