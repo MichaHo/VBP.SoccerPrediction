@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace SoccerPrediction.Model
 {
@@ -16,8 +14,7 @@ namespace SoccerPrediction.Model
         public virtual string LastName { get; set; }
         public virtual int TotalPoints { get; set; }
         public virtual int GameDayPoints { get; set; }
-
-
+        public virtual AccessData Credentials { get; set; }
         public virtual bool DeletedFlag { get; set; }
         public virtual DateTime? DeletedTimestamp { get; set; }
         public virtual DateTime? LastUpdateTimestamp { get; set; }
