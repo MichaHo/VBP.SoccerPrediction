@@ -30,10 +30,9 @@ namespace SoccerPrediction.Model
         public virtual string EncryptedPassword { get; set; }
 
         /// <summary>
-        /// der Typ des Users
-        /// TODO: diskutieren, ob hier ein bool Wert reicht
+        /// Zeigt an ob der eingeloggte User ein Admin ist
         /// </summary>
-        public virtual AccessDataTypeEnum UserType { get; set; }
+        public virtual bool IsAdmin { get; set; }
 
         /// <summary>
         /// Zeigt an ob der Eintrag als gelöscht markiert ist
@@ -54,12 +53,5 @@ namespace SoccerPrediction.Model
         /// Datum und Uhrzeit wann der Eintrag angelegt wurde
         /// </summary>
         public virtual DateTime? CreationTimestamp { get; set; } = DateTime.Now;
-    }
-
-    public enum AccessDataTypeEnum
-    {
-        User = 1,
-        Admin = 2,
-        AdminUser = 3
     }
 }
