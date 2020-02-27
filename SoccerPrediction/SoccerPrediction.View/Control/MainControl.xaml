@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SoccerPrediction.View"
              xmlns:vm="clr-namespace:SoccerPrediction.ViewModel;assembly=SoccerPrediction.ViewModel"
-             xmlns:animatedControl="clr-namespace:SoccerPrediction.AnimatedContentControl;assembly=SoccerPrediction.AnimatedContentControl"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.DataContext>
@@ -35,8 +34,8 @@
                 </StackPanel>
             </Border>
         </Expander>
-        <Border Grid.Column="1" BorderBrush="{StaticResource WindowBorderBrush}" BorderThickness="1" CornerRadius="5" Margin="5,0,0,0">
-            <animatedControl:AnimatedContentControl Content="{Binding CurrentContent}" AnimationType="SlideLeft" AnimationDuration="0:0:0.8" EaseAnimation="True"/>
+        <Border Grid.Column="1" BorderBrush="{StaticResource WindowBorderBrush}" BorderThickness="1" CornerRadius="5" Margin="5,0,0,0" Padding="5">
+            <local:LoginControl/>
         </Border>
     </Grid>
 </UserControl>

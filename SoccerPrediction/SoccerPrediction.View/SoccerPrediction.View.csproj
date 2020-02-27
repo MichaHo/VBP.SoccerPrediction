@@ -6,7 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\SoccerPrediction.AnimatedContentControl\SoccerPrediction.AnimatedContentControl.csproj" />
     <ProjectReference Include="..\SoccerPrediction.ViewModel\SoccerPrediction.ViewModel.csproj" />
   </ItemGroup>
 

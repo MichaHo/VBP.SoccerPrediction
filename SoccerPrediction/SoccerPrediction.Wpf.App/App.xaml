@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:SoccerPrediction.Wpf.App"
              xmlns:vm="clr-namespace:SoccerPrediction.ViewModel;assembly=SoccerPrediction.ViewModel"
-             xmlns:ctr="clr-namespace:SoccerPrediction.View;assembly=SoccerPrediction.View"
-             StartupUri="MainWindow.xaml">
+             xmlns:ctr="clr-namespace:SoccerPrediction.View;assembly=SoccerPrediction.View">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -15,6 +14,9 @@
             <!--#region Data Templates -->
             <DataTemplate DataType="{x:Type vm:LoginViewModel}">
                 <ctr:LoginControl/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:MainWorkspace}">
+                <ctr:MainControl/>
             </DataTemplate>
             <!--#endregion-->
         </ResourceDictionary>

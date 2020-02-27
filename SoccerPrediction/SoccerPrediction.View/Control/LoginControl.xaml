@@ -4,11 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SoccerPrediction.View"
-             mc:Ignorable="d" 
+             xmlns:vm="clr-namespace:SoccerPrediction.ViewModel;assembly=SoccerPrediction.ViewModel"
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type vm:LoginViewModel}}"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Border>
+    <Border Background="DimGray" BorderBrush="Green" BorderThickness="2" CornerRadius="5">
         <Grid>
-            <ContentControl Content="Login Page" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource ButtonForegroundBrush}"/>
+            <ContentControl Content="{Binding DisplayText}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource ButtonForegroundDisabledBrush}"/>
         </Grid>
     </Border>
 </UserControl>

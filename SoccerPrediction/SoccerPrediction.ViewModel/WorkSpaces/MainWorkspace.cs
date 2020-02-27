@@ -7,20 +7,18 @@ namespace SoccerPrediction.ViewModel
 {
     public class MainWorkspace : ViewModelBase
     {
-        private List<object> _availableContents;
-        public List<object> AvailableContents { get => _availableContents; set => SetValue(ref _availableContents, value); }
 
 
-        private object _currentContent;
-        public object CurrentContent { get => _currentContent; set => SetValue(ref _currentContent, value); }
+        /// <summary>
+        /// Kommentar 
+        /// </summary>
+        private LoginViewModel _loginVm;
+        public LoginViewModel LoginVm { get => _loginVm; set => SetValue(ref _loginVm, value); }
+
 
         public MainWorkspace()
         {
-            AvailableContents = new List<object>
-            {
-                new LoginViewModel()
-            };
-            CurrentContent = AvailableContents.First();
+            LoginVm = new LoginViewModel("Login Seite (Main Control)");
         }
     }
 }

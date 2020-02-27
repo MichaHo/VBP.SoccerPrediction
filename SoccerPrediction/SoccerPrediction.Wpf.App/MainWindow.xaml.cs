@@ -23,7 +23,6 @@ namespace SoccerPrediction.Wpf.App
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new WindowViewModel(this);
         }
     }
 }
