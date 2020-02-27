@@ -29,6 +29,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ViewModel", "ViewModel", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoccerPrediction.ViewModel", "SoccerPrediction\SoccerPrediction.ViewModel\SoccerPrediction.ViewModel.csproj", "{E054F401-675E-4DD7-9F68-D80271D14B31}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BC0B9E3F-A811-4FF4-9BA7-1633980A2121}"
+	ProjectSection(SolutionItems) = preProject
+		Lastenheft.md = Lastenheft.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

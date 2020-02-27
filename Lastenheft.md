@@ -2,7 +2,7 @@
 
 # Lastenheft
 
-HomeStorage
+VBP.SoccerPrediction
 
 Version 0.0.1
 
