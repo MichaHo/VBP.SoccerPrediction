@@ -13,12 +13,12 @@ namespace SoccerPrediction.ViewModel
 
         public LoginViewModel()
         {
-            DisplayText = "Login Seite";
+            _displayText = "Login Seite";
         }
 
         public LoginViewModel(string displayText)
         {
-            DisplayText = displayText;
+            _displayText = displayText;
         }
     }
 }

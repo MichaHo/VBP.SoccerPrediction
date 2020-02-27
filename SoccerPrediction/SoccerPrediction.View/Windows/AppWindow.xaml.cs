@@ -42,6 +42,7 @@ namespace SoccerPrediction.View
         public AppWindow(string name)
         {
             Name = name;
+            this.Loaded += AppWindow_Loaded;
             InitializeComponent();
         }
 
@@ -51,6 +52,7 @@ namespace SoccerPrediction.View
             MContext = dataContext;
             SizeToContent = sizeToContent;
             WindowStartupLocation = startupLocation;
+            this.Loaded += AppWindow_Loaded;
             InitializeComponent();
         }
 

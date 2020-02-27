@@ -10,15 +10,9 @@
                 <ResourceDictionary Source="pack://application:,,,/SoccerPrediction.View;component/Styles/Defaults.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/SoccerPrediction.View;component/Styles/Icons.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/SoccerPrediction.View;component/Styles/Controls.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/SoccerPrediction.View;component/Templates/DataTemplates.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <!--#region Data Templates -->
-            <DataTemplate DataType="{x:Type vm:LoginViewModel}">
-                <ctr:LoginControl/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type vm:MainWorkspace}">
-                <ctr:MainControl/>
-            </DataTemplate>
-            <!--#endregion-->
+          
         </ResourceDictionary>
     </Application.Resources>
 </Application>

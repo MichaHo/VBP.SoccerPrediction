@@ -25,8 +25,6 @@ namespace SoccerPrediction.ViewModel
         public bool VmIsBusy { get => _vmIsBusy; set => SetValue(ref _vmIsBusy, value); }
         public virtual bool IsValid => !ValidationErrors().Any();
 
-        public virtual ViewModelBase CurrentViewModel { get; set; }
-
         #endregion
 
         #region Constructor

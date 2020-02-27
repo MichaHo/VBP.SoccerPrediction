@@ -5,11 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SoccerPrediction.View"
              xmlns:vm="clr-namespace:SoccerPrediction.ViewModel;assembly=SoccerPrediction.ViewModel"
-             mc:Ignorable="d" 
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,Type={x:Type vm:MainWorkspace}}"
+             local:WindowExtension.WindowTitle="Fantastic Soccer App"
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.DataContext>
-        <vm:MainWorkspace/>
-    </UserControl.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -24,18 +22,11 @@
                 </TextBlock>
             </Expander.Header>
             <Border BorderBrush="{StaticResource WindowBorderBrush}" BorderThickness="1" CornerRadius="5">
-                <StackPanel Margin="10">
-                    <Button Content="Ranglisten" Height="50" Margin="0,0,0,5"/>
-                    <Button Content="Stammdaten" Margin="0,0,0,5" />
-                    <Button Content="Tipps" Height="50" Margin="0,0,0,5"/>
-                    <Button Content="Ergebnisse" Height="50" Margin="0,0,0,5"/>
-                    <Button Content="Export" Height="50" Margin="0,0,0,5"/>
-                    <Button Content="Drucken" Height="50" Margin="0,0,0,5"/>
-                </StackPanel>
+                <local:SideMenuControl DataContext="{Binding SideMenuVm, UpdateSourceTrigger=PropertyChanged}"/>
             </Border>
         </Expander>
         <Border Grid.Column="1" BorderBrush="{StaticResource WindowBorderBrush}" BorderThickness="1" CornerRadius="5" Margin="5,0,0,0" Padding="5">
-            <local:LoginControl/>
+            <local:LoginControl DataContext="{Binding LoginVm, UpdateSourceTrigger=PropertyChanged}"/>
         </Border>
     </Grid>
 </UserControl>

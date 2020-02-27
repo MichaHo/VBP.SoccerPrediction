@@ -6,8 +6,6 @@
         xmlns:local="clr-namespace:SoccerPrediction.View"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="AppWindow" Height="450" Width="800">
-    <Grid>
-        <ContentPresenter Content="{Binding}"/>
-    </Grid>
+        Title="Soccer Prediction" Height="450" Width="800">
+    <ContentPresenter Content="{Binding}"/>
 </Window>
