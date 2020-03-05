@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SoccerPrediction.View"
         mc:Ignorable="d"
-        WindowStartupLocation="CenterScreen"
+        WindowStartupLocation="CenterScreen" Background="{DynamicResource DarkBrush}"
         Title="Soccer Prediction" Height="450" Width="800">
     <ContentPresenter Content="{Binding}"/>
 </Window>

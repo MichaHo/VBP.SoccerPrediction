@@ -6,10 +6,41 @@
              xmlns:local="clr-namespace:SoccerPrediction.View"
              xmlns:vm="clr-namespace:SoccerPrediction.ViewModel;assembly=SoccerPrediction.ViewModel"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type vm:LoginViewModel}}"
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Border Background="DimGray" BorderBrush="Green" BorderThickness="2" CornerRadius="5">
-        <Grid>
-            <TextBlock Text="{Binding DisplayText, UpdateSourceTrigger=PropertyChanged}" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource ButtonForegroundDisabledBrush}"/>
-        </Grid>
+             d:DesignHeight="450" d:DesignWidth="800" x:Name="Login">
+    <Border>
+        <!-- Main Content Scroll   -->
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" TextBlock.TextAlignment="Center">
+
+                <!-- Login main content white box   -->
+                <Border CornerRadius="10" Background="{StaticResource VeryVeryLightBrush}" Padding="15" Width="330" Margin="40">
+                    <StackPanel>
+                        <!-- Login header-->
+                        <TextBlock Text="Login" Style="{StaticResource PageHeader}" 
+                                   Foreground="{DynamicResource BlueBrush}"
+                                   HorizontalAlignment="Center"/>
+                        <!-- Login Sub Header-->
+                        <TextBlock Text="Soccer Prediction" 
+                                   Style="{StaticResource PageSubHeader}" 
+                                   Margin="0 0 0 20"
+                                   Foreground="{DynamicResource LightBrush}"
+                                   HorizontalAlignment="Center"/>
+                        <!-- Email -->
+                        <TextBox Text="{Binding UserName}" Tag="Benutzername" local:IsFocusedProperty.Value="True" />
+                        <!-- Password -->
+                        <PasswordBox x:Name="PasswordText" Tag="Kennwort" Margin="0 0 0 30"/>
+                        <!-- Login Button-->
+                        <Button Content="Anmelden"
+                                IsDefault="True"
+                                local:IsBusyProperty.Value ="{Binding LoginIsRunning}"
+                                Command="{Binding LogInCommand}" 
+                                CommandParameter="{Binding ElementName=Login}"   
+                                HorizontalAlignment="Center" />
+
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
     </Border>
 </UserControl>

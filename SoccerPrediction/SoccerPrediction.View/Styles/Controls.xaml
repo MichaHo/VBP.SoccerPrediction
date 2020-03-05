@@ -9,6 +9,8 @@
 
     <!--#region Buttons -->
 
+    <!-- #region Defaults -->
+
     <Style x:Key="HoverlessButton" TargetType="{x:Type Button}" >
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
@@ -25,15 +27,16 @@
     </Style>
 
     <Style x:Key="SystemIconButton" TargetType="{x:Type Button}" BasedOn="{StaticResource HoverlessButton}">
+        <Setter Property="FontFamily" Value="{StaticResource DefaultRegular}"/>
         <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
-        <Setter Property="Padding" Value="10" />
+        <Setter Property="Padding" Value="4" />
     </Style>
 
-    <Style TargetType="{x:Type Button}" >
-        <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource ButtonBorderBrush}"/>
-        <Setter Property="Foreground" Value="{StaticResource ButtonForegroundBrush}"/>
-        <Setter Property="FontSize" Value="{StaticResource FontSizeRegular }"/>
+    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseButtonStyle}" >
+        <Setter Property="BorderBrush" Value="{DynamicResource LightDarkBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource BlueBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource VeryVeryLightBrush}"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSizeRegular}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -48,12 +51,11 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="BorderBrush"  Value="{StaticResource ButtonHoverBorderBrush}"/>
+                            <Setter Property="BorderBrush"  Value="{DynamicResource OrangeBrush}"/>
                         </Trigger>
 
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="BorderBrush"  Value="{StaticResource ButtonDisabledBorderBrush}"/>
-                            <Setter Property="Foreground" Value="{StaticResource ButtonForegroundDisabledBrush}"/>
+                            <Setter Property="Background" Value="{DynamicResource LightBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -61,15 +63,19 @@
         </Setter>
     </Style>
 
-    <Style x:Key="IconButton" TargetType="{x:Type Button}" >
+    <!-- #endregion -->
+
+    <!-- #region Icon Button -->
+
+    <Style x:Key="IconButton" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseButtonStyle}" >
         <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
-        <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}"/>
-        <Setter Property="Foreground" Value="{StaticResource ButtonForegroundBrush}"/>
+        <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="FontSize" Value="{StaticResource FontSizeRegular}" />
-        <Setter Property="Padding" Value="10"/>
+        <Setter Property="Padding" Value="10 10"/>
         <Setter Property="Margin" Value="5"/>
         <Setter Property="MinHeight" Value="30"/>
+        <Setter Property="Foreground" Value="{DynamicResource BlueBrush}"/>
         <Setter Property="Width" Value="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" />
         <Setter Property="Template">
             <Setter.Value>
@@ -87,16 +93,20 @@
                         </Border.RenderTransformOrigin>
 
                         <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <ContentPresenter Content="{TemplateBinding Content}" Focusable="False" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"  />
+                            <ContentControl Content="{TemplateBinding Content}" 
+                                            Focusable="False" 
+                                            Margin="{TemplateBinding Padding}" 
+                                            Foreground="{TemplateBinding Foreground}"
+                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"  />
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Foreground" Value="{StaticResource ButtonForegroundHoverBrush}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource GreenBrush}"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Background" Value="Transparent"/>
-                            <Setter Property="Foreground"  Value="{StaticResource ButtonForegroundDisabledBrush}"/>
+                            <Setter Property="Foreground"  Value="{DynamicResource LightDarkBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -104,16 +114,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="IconGrowButton" TargetType="{x:Type Button}" >
-        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="{StaticResource ButtonForegroundBrush}"/>
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="FontSize" Value="12" />
-        <Setter Property="Padding" Value="8"/>
-        <Setter Property="Margin" Value="5"/>
-        <Setter Property="MinHeight" Value="30"/>
-        <Setter Property="Width" Value="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" />
+    <Style x:Key="IconGrowButton" TargetType="{x:Type Button}" BasedOn="{StaticResource IconButton}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ButtonBase}">
@@ -130,7 +131,7 @@
                         </Border.RenderTransformOrigin>
 
                         <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <ContentPresenter Content="{TemplateBinding Content}" Focusable="False" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"  />
+                            <ContentControl Content="{TemplateBinding Content}" Focusable="False" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"  />
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -152,14 +153,144 @@
                         </EventTrigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Background" Value="Transparent"/>
-                            <Setter Property="Foreground"  Value="{StaticResource ButtonForegroundDisabledBrush}"/>
+                            <Setter Property="Foreground"  Value="{DynamicResource LightBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="IconFlashButton" TargetType="{x:Type Button}" BasedOn="{StaticResource IconButton}" >
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                    <Border x:Name="border"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}" 
+                            SnapsToDevicePixels="True">
+                        <Border.RenderTransform>
+                            <ScaleTransform />
+                        </Border.RenderTransform>
+                        <Border.RenderTransformOrigin>
+                            <Point X="0.5" Y="0.5" />
+                        </Border.RenderTransformOrigin>
+                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <ContentControl Content="{TemplateBinding Content}" Focusable="False" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"  />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=IsEnabled}" Value="True">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard Name="FlashStoryBoard">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="border" RepeatBehavior="Forever" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.25" Value="1.2"/>
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.50" Value="1"/>
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.75" Value="1.2"/>
+                                            <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+                                            <EasingDoubleKeyFrame KeyTime="0:0:2" Value="1"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="border" RepeatBehavior="Forever" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)" >
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.25" Value="1.2"/>
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.50" Value="1"/>
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.75" Value="1.2"/>
+                                            <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+                                            <EasingDoubleKeyFrame KeyTime="0:0:2" Value="1"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <RemoveStoryboard BeginStoryboardName="FlashStoryBoard"/>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Foreground"  Value="{DynamicResource LightBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- #endregion -->
+
+    <!-- #region Window Control Button-->
+    <Style x:Key="WindowControlButton" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseButtonStyle}">
+        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Width" Value="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"/>
+        <Setter Property="Foreground" Value="{DynamicResource VeryVeryLightBrush}" />
+        <Setter Property="FontFamily" Value="{StaticResource IconFont}"/>
+        <Setter Property="Padding" Value="2"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
+                        <ContentControl VerticalAlignment="Center" HorizontalAlignment="Center"  Content="{TemplateBinding Content}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{DynamicResource LightDarkBrush}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource LightBrush}"/>
+            </Trigger>
+        </Style.Triggers>
+
+    </Style>
+
+    <Style x:Key="WindowMaximizeButton" TargetType="{x:Type Button}" BasedOn="{StaticResource WindowControlButton}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType=Window}}" Value="Normal">
+                <Setter Property="Content" Value="&#x1F5D6;"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType=Window}}" Value="Maximized">
+                <Setter Property="Content" Value="&#x1F5D7;"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="WindowCloseButton" TargetType="{x:Type Button}" BasedOn="{StaticResource WindowControlButton}">
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{DynamicResource RedBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
     
+    <Style x:Key="WindowCloseButton2" TargetType="{x:Type Button}" BasedOn="{StaticResource WindowControlButton}">
+        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+        <Setter Property="Background" Value="Transparent" />
+
+        <Setter Property="Foreground" Value="{DynamicResource VeryVeryLightBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
+                        <ContentControl VerticalAlignment="Center" HorizontalAlignment="Center"  Content="{TemplateBinding Content}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{DynamicResource RedBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource LightBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- #endregion -->
+
     <!--#endregion-->
 
     <!--#region Window Styles -->
@@ -307,7 +438,242 @@
     </Style>
 
     <!--#endregion-->
-    
-    
-    
+
+    <!--#region Others -->
+
+    <!-- #region Scrollbar -->
+
+    <Style x:Key="ScrollBarThumb" TargetType="{x:Type Thumb}">
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="IsTabStop" Value="false"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Border x:Name="rectangle"
+                                SnapsToDevicePixels="True"
+                                Background="{DynamicResource DarkBrush}"
+                                CornerRadius="3"
+                                Height="{TemplateBinding Height}"
+                                Width="{TemplateBinding Width}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type ScrollBar}">
+        <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="false"/>
+        <Setter Property="Width" Value="14"/>
+        <Setter Property="Margin" Value="-14 0 0 0" />
+        <Setter Property="MinWidth" Value="{Binding Width, RelativeSource={RelativeSource Self}}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ScrollBar}">
+                    <Grid x:Name="Bg" SnapsToDevicePixels="true" Background="Transparent">
+
+                        <Border Padding="0 4">
+                            <Track x:Name="PART_Track"
+                               IsDirectionReversed="true"
+                               IsEnabled="{TemplateBinding IsMouseOver}"
+                               Width="6"
+                               HorizontalAlignment="Center">
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton Opacity="0" Command="{x:Static ScrollBar.PageUpCommand}" />
+                                </Track.DecreaseRepeatButton>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton Opacity="0" Command="{x:Static ScrollBar.PageDownCommand}" />
+                                </Track.IncreaseRepeatButton>
+                                <Track.Thumb>
+                                    <Thumb Style="{StaticResource ScrollBarThumb}" />
+                                </Track.Thumb>
+                            </Track>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="Orientation" Value="Horizontal">
+                <Setter Property="Width" Value="Auto"/>
+                <Setter Property="MinWidth" Value="0"/>
+                <Setter Property="Height" Value="14"/>
+                <Setter Property="MinHeight" Value="{Binding Height, RelativeSource={RelativeSource Self}}"/>
+                <Setter Property="Margin" Value="0 -14 0 0" />
+
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ScrollBar}">
+                            <Grid x:Name="Bg" SnapsToDevicePixels="true">
+                                <Track x:Name="PART_Track"
+                                    IsEnabled="{TemplateBinding IsMouseOver}"
+                                    Height="6"
+                                       >
+                                    <Track.DecreaseRepeatButton>
+                                        <RepeatButton Opacity="0" Command="{x:Static ScrollBar.PageLeftCommand}"/>
+                                    </Track.DecreaseRepeatButton>
+                                    <Track.IncreaseRepeatButton>
+                                        <RepeatButton Opacity="0" Command="{x:Static ScrollBar.PageRightCommand}"/>
+                                    </Track.IncreaseRepeatButton>
+                                    <Track.Thumb>
+                                        <Thumb Style="{StaticResource ScrollBarThumb}" />
+                                    </Track.Thumb>
+                                </Track>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="{x:Type ScrollViewer}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                    <Grid x:Name="Grid" Background="{TemplateBinding Background}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Rectangle x:Name="Corner" Grid.Column="1" Fill="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" Grid.Row="1"/>
+                        <ScrollContentPresenter x:Name="PART_ScrollContentPresenter" 
+                                                CanContentScroll="{TemplateBinding CanContentScroll}" 
+                                                CanHorizontallyScroll="False" 
+                                                CanVerticallyScroll="False" 
+                                                ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                                Content="{TemplateBinding Content}" Grid.Column="0" Margin="{TemplateBinding Padding}" Grid.Row="0"/>
+
+                        <ScrollBar x:Name="PART_VerticalScrollBar" 
+                                   Opacity="0.1"
+                                   AutomationProperties.AutomationId="VerticalScrollBar" 
+                                   Cursor="Arrow" 
+                                   Grid.Column="1"
+                                   Maximum="{TemplateBinding ScrollableHeight}" 
+                                   Minimum="0" 
+                                   Grid.Row="0" 
+                                   Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
+                                   Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                   ViewportSize="{TemplateBinding ViewportHeight}"/>
+
+                        <ScrollBar x:Name="PART_HorizontalScrollBar"
+                                   Opacity="0.1"
+                                   AutomationProperties.AutomationId="HorizontalScrollBar"
+                                   Cursor="Arrow" 
+                                   Grid.Column="0"
+                                   Maximum="{TemplateBinding ScrollableWidth}"
+                                   Minimum="0" 
+                                   Orientation="Horizontal"
+                                   Grid.Row="1" 
+                                   Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"
+                                   Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" 
+                                   ViewportSize="{TemplateBinding ViewportWidth}"/>
+
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation To="0.5" Duration="0:0:0.3" Storyboard.TargetName="PART_VerticalScrollBar" Storyboard.TargetProperty="Opacity" />
+                                    <DoubleAnimation To="0.5" Duration="0:0:0.3" Storyboard.TargetName="PART_HorizontalScrollBar" Storyboard.TargetProperty="Opacity" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation To="0.1" Duration="0:0:0.3" Storyboard.TargetName="PART_VerticalScrollBar" Storyboard.TargetProperty="Opacity" />
+                                    <DoubleAnimation To="0.1" Duration="0:0:0.3" Storyboard.TargetName="PART_HorizontalScrollBar" Storyboard.TargetProperty="Opacity" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- #endregion -->
+
+    <!-- #region ListBox -->
+
+    <Style x:Key="EmptyListStyle"
+           TargetType="ListBox"
+           BasedOn="{StaticResource {x:Type ListBox}}">
+        <Style.Triggers>
+            <!-- Use ListBox.HasItems instead of Binding -->
+            <Trigger Property="HasItems" Value="False">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <TextBlock Text="Keine Einträge vorhanden..."
+                                       VerticalAlignment="Center" HorizontalAlignment="Center"
+                                       FontSize="{StaticResource FontSizeXXLarge}"
+                                       FontFamily="{StaticResource DefaultThin}"
+                                       Height="360"
+                                       Padding="150"
+                                           />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- #endregion -->
+
+    <!-- #region Text Styles -->
+
+    <!-- Default Style for Window Title -->
+    <Style TargetType="{x:Type TextBlock}" x:Key="WindowTitleStyle" BasedOn="{StaticResource BaseTextBlockStyle}">
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="0 6" />
+    </Style>
+
+    <!-- Default Style for a Page Title -->
+    <Style TargetType="{x:Type TextBlock}" x:Key="PageHeader" BasedOn="{StaticResource BaseTextBlockStyle}">
+        <Setter Property="FontSize" Value="{StaticResource FontSizeXXLarge}" />
+        <Setter Property="FontFamily" Value="{StaticResource DefaultBold}" />
+    </Style>
+
+    <!-- Default Style for a Page Sub Title -->
+    <Style TargetType="{x:Type TextBlock}" x:Key="PageSubHeader" BasedOn="{StaticResource BaseTextBlockStyle}">
+        <Setter Property="FontSize" Value="{StaticResource FontSizeAverage}" />
+        <Setter Property="FontFamily" Value="{StaticResource DefaultThin}" />
+    </Style>
+    <!-- Tool Tip Style -->
+    <Style x:Key="{x:Type ToolTip}" TargetType="ToolTip">
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="HasDropShadow" Value="True" />
+        <Setter Property="FontSize" Value="{StaticResource FontSizeSmall}"/>
+        <Setter Property="Foreground" Value="{DynamicResource VeryVeryLightBrush}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToolTip">
+                    <Grid>
+                        <Border CornerRadius="4"
+                                Padding="4"
+                                Margin="5 0 0 0"
+                                Background="{DynamicResource LightDarkBrush}" >
+                            <ContentPresenter Margin="4"
+                                              HorizontalAlignment="Left"
+                                              VerticalAlignment="Top"/>
+
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!-- #endregion -->
+
+    <!--#endregion-->
+
+
 </ResourceDictionary>

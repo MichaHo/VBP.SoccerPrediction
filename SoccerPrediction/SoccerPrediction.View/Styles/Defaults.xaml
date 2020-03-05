@@ -2,85 +2,191 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:SoccerPrediction.View"
                     xmlns:system="clr-namespace:System;assembly=System.Runtime">
-    <!--#region Default Colors -->
+    <!-- #region Colors -->
 
-    <!--#region Window Colors -->
+    <!--<Color x:Key="DarkColor">#194470</Color>-->
+    <Color x:Key="DarkColor">#404040</Color>
+    <Color x:Key="LightDarkColor">#666666</Color>
+    <Color x:Key="LightColor">#638FBC</Color>
+    <Color x:Key="VeryLightColor">#99BDE3</Color>
+    <Color x:Key="VeryVeryLightColor">#F5F5F5</Color>
+    <Color x:Key="OverlayColor">#1C1414</Color>
 
-    <Color x:Key="WindowBackgroundColor">#F5F5F5</Color>
-    <Color x:Key="WindowBorderColor">#696969</Color>
-    <Color x:Key="WindowForegroundColor">#00008B</Color>
+    <SolidColorBrush x:Key="DarkBrush" Color="{DynamicResource DarkColor}"/>
+    <SolidColorBrush x:Key="LightDarkBrush" Color="{DynamicResource LightDarkColor}"/>
+    <SolidColorBrush x:Key="LightBrush" Color="{DynamicResource LightColor}"/>
+    <SolidColorBrush x:Key="VeryLightBrush" Color="{DynamicResource VeryLightColor}"/>
+    <SolidColorBrush x:Key="VeryVeryLightBrush" Color="{DynamicResource VeryVeryLightColor}"/>
+    <SolidColorBrush x:Key="OverlayBrush" Color="{DynamicResource OverlayColor}"/>
 
-    <Color x:Key="WidnowLabelBackgroundColor">#8B0000</Color>
-    <Color x:Key="WindowLabelBorderColor">#696969</Color>
-    <Color x:Key="WindowLabelForegroundColor">#F5F5F5</Color>
+    <Color x:Key="GreenColor">#03C03C</Color>
+    <Color x:Key="BlueColor">#21ABCD</Color>
+    <Color x:Key="OrangeColor">#FF7F00</Color>
+    <Color x:Key="RedColor">#CC0000</Color>
+    <Color x:Key="TransparentBlueColor">#DEF4FF</Color>
+    <SolidColorBrush x:Key="TransparentBlueBrush" Color="{StaticResource TransparentBlueColor}" />
 
-    <SolidColorBrush x:Key="WindowBackgroundBrush" Color="{StaticResource WindowBackgroundColor}"/>
-    <SolidColorBrush x:Key="WindowBorderBrush" Color="{StaticResource WindowBorderColor}"/>
-    <SolidColorBrush x:Key="WindowForegroundBrush" Color="{StaticResource WindowForegroundColor}"/>
+    <SolidColorBrush x:Key="GreenBrush" Color="{DynamicResource GreenColor}"/>
+    <SolidColorBrush x:Key="BlueBrush" Color="{DynamicResource BlueColor}"/>
+    <SolidColorBrush x:Key="OrangeBrush" Color="{DynamicResource OrangeColor}"/>
+    <SolidColorBrush x:Key="RedBrush" Color="{DynamicResource RedColor}"/>
 
-    <SolidColorBrush x:Key="WindowLabelBackgroundBrush" Color="{StaticResource WidnowLabelBackgroundColor}"/>
-    <SolidColorBrush x:Key="WindowLabelForegroundBrush" Color="{StaticResource WindowLabelForegroundColor}"/>
-    <SolidColorBrush x:Key="WindowLabelBorderBrush" Color="{StaticResource WindowLabelBorderColor}"/>
+    <!-- #endregion -->
 
-    <!--#endregion-->
+    <!-- #region Fonts -->
 
-    <!--#region Button Colors -->
-
-    <Color x:Key="ButtonBackgroundColor">Transparent</Color>
-    <Color x:Key="ButtonForegroundColor">#000065</Color>
-    <Color x:Key="ButtonForegroundDisabledColor">#DCDCDC</Color>
-    <Color x:Key="ButtonForegroundHoverColor">#00B200</Color>
-
-
-    <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="{StaticResource ButtonBackgroundColor}"/>
-    <SolidColorBrush x:Key="ButtonBorderBrush" Color="{StaticResource ButtonForegroundColor}"/>
-    <SolidColorBrush x:Key="ButtonHoverBorderBrush" Color="{StaticResource ButtonForegroundHoverColor}"/>
-    <SolidColorBrush x:Key="ButtonDisabledBorderBrush" Color="{StaticResource ButtonForegroundDisabledColor}"/>
-
-    <SolidColorBrush x:Key="ButtonForegroundBrush" Color="{StaticResource ButtonForegroundColor}"/>
-    <SolidColorBrush x:Key="ButtonForegroundDisabledBrush" Color="{StaticResource ButtonForegroundDisabledColor}"/>
-    <SolidColorBrush x:Key="ButtonForegroundHoverBrush" Color="{StaticResource ButtonForegroundHoverColor}"/>
-
-    <!--#endregion-->
-
-    <!--#endregion-->
-
-    <!-- #region Default Font Families -->
+    <!-- #region Font Families -->
 
     <FontFamily x:Key="DefaultThin">Segoe UI Light</FontFamily>
     <FontFamily x:Key="DefaultBold">Segoe UI Semibold</FontFamily>
     <FontFamily x:Key="DefaultRegular">Segoe UI</FontFamily>
+    <FontFamily x:Key="IconFont">Segoe UI Symbol</FontFamily>
+    <FontFamily x:Key="IconFont2">Segoe MDL2 Assets</FontFamily>
 
     <!-- #endregion-->
 
-    <!-- #region Default Font Control Styles-->
-
-    <Style TargetType="{x:Type Control}" x:Key="BaseStyle">
-        <Setter Property="FontFamily" Value="{StaticResource DefaultRegular}" />
-    </Style>
-
-    <Style TargetType="{x:Type TextBlock}" x:Key="BaseTextBlockStyle">
-        <Setter Property="FontFamily" Value="{StaticResource DefaultThin}" />
-    </Style>
-
-    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}" />
-    <Style TargetType="{x:Type Label}" BasedOn="{StaticResource BaseStyle}" />
-    <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource BaseStyle}" />
-    <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource BaseTextBlockStyle}" />
-    <Style TargetType="{x:Type ListView}" BasedOn="{StaticResource BaseStyle}" />
-
-    <!-- #endregion -->
-
-    <!-- #region Default Font Sizes -->
+    <!-- #region Font Sizes -->
 
     <system:Double x:Key="FontSizeSmaller">10</system:Double>
     <system:Double x:Key="FontSizeSmall">12</system:Double>
     <system:Double x:Key="FontSizeRegular">14</system:Double>
     <system:Double x:Key="FontSizeAverage">18</system:Double>
     <system:Double x:Key="FontSizeLarge">20</system:Double>
+    <system:Double x:Key="FontSizeXSLarge">22</system:Double>
     <system:Double x:Key="FontSizeXLarge">24</system:Double>
     <system:Double x:Key="FontSizeXXLarge">30</system:Double>
+    <system:Double x:Key="FontSizeXXXLarge">36</system:Double>
 
     <!-- #endregion -->
-    
+
+    <!-- #endregion -->
+
+    <!-- #region BaseStyles -->
+
+    <Style TargetType="{x:Type Control}" x:Key="BaseControlStyle">
+        <Setter Property="FontFamily" Value="{StaticResource DefaultBold}" />
+    </Style>
+
+    <Style TargetType="{x:Type Button}" x:Key="BaseButtonStyle">
+        <Setter Property="FontFamily" Value="{StaticResource DefaultRegular}" />
+    </Style>
+
+    <Style TargetType="{x:Type Label}" x:Key="BaseLabelStyle">
+        <Setter Property="FontFamily" Value="{StaticResource DefaultRegular}" />
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}" x:Key="BaseTextBlockStyle">
+        <Setter Property="FontFamily" Value="{StaticResource DefaultBold}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSizeLarge}"/>
+    </Style>
+
+    <Style TargetType="{x:Type TextBox}" x:Key="BaseTextBoxStyle">
+        <Setter Property="FontFamily" Value="{StaticResource DefaultThin}" />
+    </Style>
+
+    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseButtonStyle}" />
+    <Style TargetType="{x:Type Label}" BasedOn="{StaticResource BaseLabelStyle}" />
+    <!--<Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource BaseTextBoxStyle}" />-->
+    <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource BaseTextBlockStyle}" />
+    <Style TargetType="{x:Type ListView}" BasedOn="{StaticResource BaseControlStyle}" />
+
+    <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource BaseControlStyle}">
+        <Setter Property="FontSize" Value="{StaticResource FontSizeXLarge}" />
+        <Setter Property="FontFamily" Value="{StaticResource DefaultRegular}" />
+        <Setter Property="Padding" Value="10"/>
+        <Setter Property="Margin" Value="0 5 0 5" />
+        <Setter Property="BorderBrush" Value="{StaticResource BlueBrush}"/>
+        <Setter Property="BorderThickness" Value="0 0 0 1"/>
+        <Setter Property="Background" Value="{StaticResource VeryVeryLightBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource DarkBrush}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBoxBase}">
+
+                    <Grid>
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <TextBlock IsHitTestVisible="False"
+                                   Text="{TemplateBinding Tag}"
+                                   x:Name="placeholder"
+                                   FontFamily="{StaticResource DefaultThin}"
+                                   Padding="{TemplateBinding Padding}"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                   Foreground="{StaticResource LightDarkBrush}">
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}" Value="">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+
+                        </TextBlock>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" TargetName="border" Value="#FF7EB4EA"/>
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="BorderBrush" TargetName="border" Value="#FF569DE5"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource BaseControlStyle}">
+        <Setter Property="FontSize" Value="{StaticResource FontSizeXLarge}" />
+        <Setter Property="FontFamily" Value="{StaticResource DefaultRegular}" />
+        <Setter Property="Padding" Value="10"/>
+        <Setter Property="Margin" Value="0 5 0 5" />
+        <Setter Property="BorderBrush" Value="{StaticResource BlueBrush}"/>
+        <Setter Property="BorderThickness" Value="0 0 0 1"/>
+        <Setter Property="local:MonitorPasswordProperty.Value" Value="True"/>
+        <Setter Property="Background" Value="{StaticResource VeryVeryLightBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource DarkBrush}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type PasswordBox}">
+
+                    <Grid>
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <TextBlock IsHitTestVisible="False"
+                                   Text="{TemplateBinding Tag}"
+                                   x:Name="placeholder"
+                                   FontFamily="{StaticResource DefaultThin}"
+                                   Padding="{TemplateBinding Padding}"
+                                   Visibility="{TemplateBinding local:HasTextProperty.Value, Converter={local:BooleanToVisibilityConverter}}"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                   Foreground="{StaticResource LightDarkBrush}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" TargetName="border" Value="#FF7EB4EA"/>
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="BorderBrush" TargetName="border" Value="#FF569DE5"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- #endregion -->
 </ResourceDictionary>

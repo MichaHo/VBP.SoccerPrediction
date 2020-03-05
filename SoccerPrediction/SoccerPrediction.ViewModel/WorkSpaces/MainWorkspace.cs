@@ -21,7 +21,7 @@ namespace SoccerPrediction.ViewModel
 
         public MainWorkspace()
         {
-            LoginVm = new LoginViewModel("Login Seite (Main Control)");
+            //LoginVm = new LoginViewModel("Login Seite (Main Control)");
             SideMenuVm = new SideMenuViewModel();
         }
     }

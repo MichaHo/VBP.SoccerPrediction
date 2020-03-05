@@ -1,5 +1,7 @@
-﻿using System;
+﻿using SoccerPrediction.ViewModel;
+using System;
 using System.Collections.Generic;
+using System.Security;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,11 +18,13 @@ namespace SoccerPrediction.View
     /// <summary>
     /// Interaktionslogik für LoginControl.xaml
     /// </summary>
-    public partial class LoginControl : UserControl
+    public partial class LoginControl : UserControl, IHavePassword
     {
         public LoginControl()
         {
             InitializeComponent();
         }
+
+        public SecureString SecurePassword => PasswordText.SecurePassword;
     }
 }

@@ -14,8 +14,10 @@ namespace SoccerPrediction.Wpf.App
             base.OnStartup(e);
             ServiceInjector.InjectServices();
             var winService = ServiceContainer.GetService<IWindowService>();
-            var mainWorkspace = new MainWorkspace();
-            winService.OpenWindow("mainWorkspace", mainWorkspace, null);
+            //var mainWorkspace = new MainWorkspace();
+            //winService.OpenWindow("mainWorkspace", mainWorkspace, null);
+            var loginVm = new LoginViewModel();
+            winService.OpenWindow("Login", loginVm, null);
         }
     }
 }

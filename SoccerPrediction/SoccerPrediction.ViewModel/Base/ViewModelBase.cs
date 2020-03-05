@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SoccerPrediction.Helper;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -117,6 +118,36 @@ namespace SoccerPrediction.ViewModel
             passedValue = value;
             OnPropertyChanged(propertyname);
             return true;
+        }
+
+        #endregion
+
+        #region Command Helpers
+
+        /// <summary>
+        /// führt einen Befehl aus, wenn das Aktualisierungsflag nicht gesetzt ist
+        /// Wenn das Flag wahr ist (was darauf hinweist, dass die Funktion bereits ausgeführt wird), wird die Aktion nicht ausgeführt
+        /// Wenn das Flag falsch ist (was anzeigt, dass keine Funktion ausgeführt wird), wird die Aktion ausgeführt
+        /// Wenn die Aktion beendet ist, wenn sie ausgeführt wird, wird das Flag zurückgesetzt, sobald sie ausgeführt wurde
+        /// </ summary>
+        /// <param name = "updatedFlag"> das Flag, das definiert, ob der Befehl bereits ausgeführt wird </ param>
+        /// <param name = "action"> die auszuführende Aktion, wenn der Befehl noch nicht ausgeführt wird </ param>
+        protected async Task RunCommandAsync(Expression<Func<bool>> updatingFlag, Func<Task> action)
+        {
+            if (updatingFlag.GetPropertyValue())
+                return;
+
+            updatingFlag.SetPropertyValue(true);
+
+            try
+            {
+                await action();
+            }
+            finally
+            {
+                updatingFlag.SetPropertyValue(false);
+            }
+
         }
 
         #endregion
