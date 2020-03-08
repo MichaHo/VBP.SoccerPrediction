@@ -3,31 +3,25 @@ using SoccerPrediction.Model;
 using SoccerPrediction.ViewModel.Services;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace SoccerPrediction.ViewModel
 {
-    public class LoginViewModel : ViewModelBase
+    public class LoginViewModel : ViewModelBase, IViewModelValidation, IDataErrorInfo
     {
-        /// <summary>
-        /// Instanz des <see cref="IWindowService"/> erstellen und Service holen
-        /// </summary>
-        private readonly IWindowService _winService = ServiceContainer.GetService<IWindowService>();
-
         /// <summary>
         /// der Username der Person
         /// </summary>
         private string _userName;
         public string UserName { get => _userName; set => SetValue(ref _userName, value); }
 
-        /// <summary>
-        /// gibt an ob der Login gestartet ist
-        /// kann verwendet werden um in der View anzuzeigen das etwas passiert
-        /// </summary>
-        private bool _loginIsRunning;
-        public bool LoginIsRunning { get => _loginIsRunning; set => SetValue(ref _loginIsRunning, value); }
+        private string _password;
+        public string Password { get => _password; set => SetValue(ref _password, value); }
 
 
         private string _displayText;
@@ -46,6 +40,10 @@ namespace SoccerPrediction.ViewModel
         /// </summary>
         public ICommand RegisterCommand { get; private set; }
 
+
+
+        
+
         #endregion
 
 
@@ -58,7 +56,7 @@ namespace SoccerPrediction.ViewModel
         public LoginViewModel(string displayText)
         {
             _displayText = displayText;
-            LogInCommand = new RelayCommand( async (param) => await LoginAsync(param));
+            LogInCommand = new RelayCommand(async (param) => await LoginAsync(param));
         }
 
         #region Command Methods
@@ -70,7 +68,7 @@ namespace SoccerPrediction.ViewModel
         /// <returns> </ returns>
         public async Task LoginAsync(object parameter)
         {
-            await RunCommandAsync(() => LoginIsRunning, async () =>
+            await RunCommandAsync(() => VmIsBusy, async () =>
             {
                 var user = UserName;
                 var pass = (parameter as IHavePassword).SecurePassword.Unsecure();
@@ -80,6 +78,7 @@ namespace SoccerPrediction.ViewModel
                 {
                     // Erfolgreich
                     //TODO: Person in eine Instanz schreiben, damit Zugriff auf Personen Infos besteht
+                    IWindowService _winService = ServiceContainer.GetService<IWindowService>();
                     _winService.OpenWindow("mainWindow", new MainWorkspace(), null);
 
                 }
@@ -91,7 +90,50 @@ namespace SoccerPrediction.ViewModel
                 }
             });
         }
+
+
+        #endregion
+        public bool CanLogin()
+        {
+            ///Die BL fragen ob UserName und Kennwort korrekt sind (die entschlüsselung am besten auch über z.b. einen Helper im BL Projekt machen lassen.
+            ///Eine entschlüsselung ist ja auch logik und gehört also dort hin.
+            return false;
+        }
+
+        #region "IViewModelValidation"
+        public List<ValidationResult> ValidationErrors()
+        {
+            List<ValidationResult> valRet = new List<ValidationResult>();
+            if (((Password == null) || (Password.Length == 0)))
+            {
+                valRet.Add(new ValidationResult("Es muss ein Passwort angegeben werden", new List<string>() { nameof(Password) }));
+            }
+
+            if (((UserName == null) || (UserName.Length == 0)))
+            {
+                valRet.Add(new ValidationResult("Bitte Username angeben", new List<string>() { nameof(UserName) }));
+            }
+
+            return valRet;
+        }
+
+        public bool IsValid => ValidationErrors().Any();
+        #endregion
+
+
+        #region "IDataErrorInfo"
+        public string Error => null; //Wird nur z.b. bei DataGrid und der gleichen benötigt und auch nur dort abgferufen
+
+        public string this[string columnName]
+        {
+            get
+            {
+                ValidationResult valRes = ValidationErrors().Where(v => v.MemberNames.Contains(columnName) == true).FirstOrDefault();
+                if (valRes == null) return null;
+                return valRes.ErrorMessage;
+            }
+        }
         #endregion
 
     }
-}
+    }

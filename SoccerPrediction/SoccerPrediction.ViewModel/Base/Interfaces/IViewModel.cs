@@ -5,9 +5,7 @@ namespace SoccerPrediction.ViewModel
 {
     public interface IViewModel :
         INotifyPropertyChanged,
-        IDataErrorInfo,
-        IDisposable,
-        IViewModelValidation
+        IDisposable
     { }
 
     public interface IViewModel<TModel> : IViewModel

@@ -24,7 +24,7 @@ namespace SoccerPrediction.ViewModel
 
         private bool _vmIsBusy;
         public bool VmIsBusy { get => _vmIsBusy; set => SetValue(ref _vmIsBusy, value); }
-        public virtual bool IsValid => !ValidationErrors().Any();
+
 
         #endregion
 
@@ -53,26 +53,7 @@ namespace SoccerPrediction.ViewModel
         { }
         #endregion
 
-        #region IDataErrorInfo
-
-        public virtual List<ValidationResult> ValidationErrors()
-        {
-            return null;
-        }
-
-        public string this[string columnName]
-        {
-            get
-            {
-                ValidationResult valRes = ValidationErrors().Where(v => v.MemberNames.Contains(columnName) == true).FirstOrDefault();
-                if (valRes == null) return null;
-                return valRes.ErrorMessage;
-            }
-        }
-
-        public virtual string Error => string.Empty;
-
-        #endregion
+       
 
         #region IDisposable
 
