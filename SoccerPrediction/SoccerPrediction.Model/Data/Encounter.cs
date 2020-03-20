@@ -1,11 +1,12 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace SoccerPrediction.Model.Data
+namespace SoccerPrediction.Model
 {
     /// <summary>
     /// Klasse für die Begegnung am Spieltag
     /// </summary>
+    [Serializable]
     public class Encounter : ModelBase, ILogicalDelete, ILogicalTimestamp
     {
         /// <summary>

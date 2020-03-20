@@ -82,7 +82,7 @@ namespace SoccerPrediction.ViewModel
                         List<WeakAction> weakActions = _map[message];
                         for (int i = weakActions.Count - 1; i >= -1 + 1; i += -1)
                         {
-                            if ((weakActions[i].TargetRef.Target == target) || (weakActions[i] != null && weakActions[i].Method == target))
+                            if ((weakActions[i].TargetRef.Target == target) || (weakActions[i] != null && weakActions[i].Method == (MethodInfo)target))
                                 weakActions.Remove(weakActions[i]);
                         }
                     }

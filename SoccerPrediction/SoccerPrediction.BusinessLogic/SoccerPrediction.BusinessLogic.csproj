@@ -5,7 +5,9 @@
   </PropertyGroup>
   
 	<ItemGroup>
+		<ProjectReference Include="..\SoccerPrediction.Context\SoccerPrediction.Context.csproj" />
 		<ProjectReference Include="..\SoccerPrediction.Model\SoccerPrediction.Model.csproj" />
+		<ProjectReference Include="..\SoccerPrediction.Repository\SoccerPrediction.Repository.csproj" />
 	</ItemGroup>
 
 </Project>

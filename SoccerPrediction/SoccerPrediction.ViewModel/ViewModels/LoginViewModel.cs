@@ -1,4 +1,5 @@
-﻿using SoccerPrediction.Helper;
+﻿using SoccerPrediction.BusinessLogic;
+using SoccerPrediction.Helper;
 using SoccerPrediction.Model;
 using SoccerPrediction.ViewModel.Services;
 using System;
@@ -14,6 +15,7 @@ namespace SoccerPrediction.ViewModel
 {
     public class LoginViewModel : ViewModelBase, IViewModelValidation, IDataErrorInfo
     {
+        private readonly PeopleLogic _peopleLogic;
         /// <summary>
         /// der Username der Person
         /// </summary>
@@ -46,10 +48,10 @@ namespace SoccerPrediction.ViewModel
 
         #endregion
 
-
         public LoginViewModel()
         {
             _displayText = "Login Seite";
+            _peopleLogic = new PeopleLogic();
             LogInCommand = new RelayCommand(async (param) => await LoginAsync(param));
         }
 
@@ -73,7 +75,7 @@ namespace SoccerPrediction.ViewModel
                 var user = UserName;
                 var pass = (parameter as IHavePassword).SecurePassword.Unsecure();
                 //TODO: PeopleLogic erstellen und Methode für das auslesen einer Person mit übergebenen Zugangsdaten erstellen
-                Person person = new Person(); //await _peopleLogic.GetPersonAsync(user, pass);
+                Person person =  _peopleLogic.Get(user, pass);
                 if (person != null)
                 {
                     // Erfolgreich
@@ -97,7 +99,8 @@ namespace SoccerPrediction.ViewModel
         {
             ///Die BL fragen ob UserName und Kennwort korrekt sind (die entschlüsselung am besten auch über z.b. einen Helper im BL Projekt machen lassen.
             ///Eine entschlüsselung ist ja auch logik und gehört also dort hin.
-            return false;
+            var person = _peopleLogic.Get(UserName, Password);
+            return person != null;
         }
 
         #region "IViewModelValidation"

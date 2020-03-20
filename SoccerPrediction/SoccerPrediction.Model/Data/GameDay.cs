@@ -6,6 +6,7 @@ namespace SoccerPrediction.Model
     /// <summary>
     /// Klasse für einen Spieltag
     /// </summary>
+    [Serializable]
     public class GameDay : ModelBase, ILogicalDelete, ILogicalTimestamp
     {
         /// <summary>

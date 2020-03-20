@@ -6,6 +6,7 @@ namespace SoccerPrediction.Model
     /// <summary>
     /// Klasse für den Tipgeber
     /// </summary>
+    [Serializable]
     public class Person : ModelBase, ILogicalDelete, ILogicalTimestamp
     {
         /// <summary>

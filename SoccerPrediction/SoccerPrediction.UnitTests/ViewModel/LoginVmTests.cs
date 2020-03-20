@@ -46,7 +46,7 @@ namespace SoccerPrediction.UnitTests.ViewModel
         {
             LoginViewModel sut = new LoginViewModel();
             Assert.AreEqual(2, sut.ValidationErrors().Count);
-            sut.Password = "myPassword123";
+            sut.Password = "pass";
             Assert.AreEqual(1, sut.ValidationErrors().Count);
             Assert.IsTrue(sut.ValidationErrors().First().MemberNames.First() == nameof(sut.UserName));
         }
@@ -56,8 +56,8 @@ namespace SoccerPrediction.UnitTests.ViewModel
         {
             LoginViewModel sut = new LoginViewModel();
             Assert.IsFalse(sut.CanLogin());
-            sut.UserName = "MyUserName";
-            sut.Password = "MyPassword123";
+            sut.UserName = "hmuster";
+            sut.Password = "pass";
             Assert.IsTrue(sut.CanLogin());
 
             IWindowService _fakeWin = ServiceContainer.GetService<IWindowService>();

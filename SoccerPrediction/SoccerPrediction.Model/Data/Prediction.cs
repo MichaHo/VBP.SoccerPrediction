@@ -1,11 +1,12 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace SoccerPrediction.Model.Data
+namespace SoccerPrediction.Model
 {
     /// <summary>
     /// Klasse für den Tip am Spieltag
     /// </summary>
+    [Serializable]
     public class Prediction : ModelBase, ILogicalDelete, ILogicalTimestamp
     {
         /// <summary>

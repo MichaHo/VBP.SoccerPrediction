@@ -6,6 +6,7 @@ namespace SoccerPrediction.Model
     /// <summary>
     /// Klasse für Login Daten einer Person
     /// </summary>
+    [Serializable]
     public class AccessData : ModelBase, ILogicalDelete, ILogicalTimestamp
     {
         /// <summary>

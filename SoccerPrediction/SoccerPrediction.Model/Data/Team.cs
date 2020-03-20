@@ -1,11 +1,12 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace SoccerPrediction.Model.Data
+namespace SoccerPrediction.Model
 {
     /// <summary>
     /// Klasse für den Verein
     /// </summary>
+    [Serializable]
     public class Team : ModelBase, ILogicalDelete, ILogicalTimestamp
     {
         /// <summary>
