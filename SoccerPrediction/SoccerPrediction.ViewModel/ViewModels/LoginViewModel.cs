@@ -58,6 +58,14 @@ namespace SoccerPrediction.ViewModel
         public LoginViewModel(string displayText)
         {
             _displayText = displayText;
+            _peopleLogic = new PeopleLogic();
+            LogInCommand = new RelayCommand(async (param) => await LoginAsync(param));
+        }
+        
+        public LoginViewModel(string displayText,PeopleLogic bl)
+        {
+            _displayText = displayText;
+            _peopleLogic = bl;
             LogInCommand = new RelayCommand(async (param) => await LoginAsync(param));
         }
 
@@ -99,6 +107,7 @@ namespace SoccerPrediction.ViewModel
         {
             ///Die BL fragen ob UserName und Kennwort korrekt sind (die entschlüsselung am besten auch über z.b. einen Helper im BL Projekt machen lassen.
             ///Eine entschlüsselung ist ja auch logik und gehört also dort hin.
+            
             var person = _peopleLogic.Get(UserName, Password);
             return person != null;
         }
@@ -115,6 +124,10 @@ namespace SoccerPrediction.ViewModel
             if (((UserName == null) || (UserName.Length == 0)))
             {
                 valRet.Add(new ValidationResult("Bitte Username angeben", new List<string>() { nameof(UserName) }));
+            }
+            if (((UserName == null) || (UserName.Length < 3)))
+            {
+                valRet.Add(new ValidationResult("Username ist zu kurz", new List<string>() { nameof(UserName) }));
             }
 
             return valRet;

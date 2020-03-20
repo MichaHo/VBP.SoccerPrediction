@@ -6,11 +6,15 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
+
+[assembly:InternalsVisibleTo("SoccerPrediction.UnitTests")]
 namespace SoccerPrediction.BusinessLogic
 {
+    
     public class PeopleLogic : IGenericRepository<Person>
     {
         internal readonly SPXmlContext Context;
@@ -22,6 +26,11 @@ namespace SoccerPrediction.BusinessLogic
                 if (!ctx.HasPessimisticLock) ctx.Seed();
                 Context = ctx;
             }
+        }
+
+        internal PeopleLogic(SPXmlContext ctx)
+        {
+            Context = ctx;
         }
 
         public bool Add(Person item)

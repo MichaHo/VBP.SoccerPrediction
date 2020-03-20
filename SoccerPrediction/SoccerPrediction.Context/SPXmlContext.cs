@@ -35,11 +35,12 @@ namespace SoccerPrediction.Context
 
         public SPXmlContext()
         {
-            //TODO: Pfad in den Settings abfragen und ggf. eintragen
-            if(string.IsNullOrEmpty(_xmlPath)) throw new Exception("Der Pfad zum XML-Datenfile muss in den Settings hinterlegt sein.");
-            if(!File.Exists(_xmlPath)) throw new Exception("Der Pfad zur XML-Datendatei aus den Settings existiert nicht.");
-            _xmlPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "xmlFile.xml");
-            InitSPContext();
+            ////TODO: Pfad in den Settings abfragen und ggf. eintragen
+            //if(string.IsNullOrEmpty(_xmlPath)) throw new Exception("Der Pfad zum XML-Datenfile muss in den Settings hinterlegt sein.");
+            //if(!File.Exists(_xmlPath)) throw new Exception("Der Pfad zur XML-Datendatei aus den Settings existiert nicht.");
+            //_xmlPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "xmlFile.xml");
+            //InitSPContext();
+            CurrentContext = new XmlContext();
         }
 
         public SPXmlContext(string xmlPath, bool savePathToSettings = false)

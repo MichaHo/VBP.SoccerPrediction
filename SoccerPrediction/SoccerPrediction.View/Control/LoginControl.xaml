@@ -35,7 +35,7 @@
                                 IsDefault="True"
                                 local:IsBusyProperty.Value ="{Binding LoginIsRunning}"
                                 Command="{Binding LogInCommand}" 
-                                CommandParameter="{Binding ElementName=Login}"   
+                                CommandParameter="{Binding ElementName=Login,Path=SecurePassword}"   
                                 HorizontalAlignment="Center" />
 
                     </StackPanel>

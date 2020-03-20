@@ -13,6 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SoccerPrediction.BusinessLogic\SoccerPrediction.BusinessLogic.csproj" />
+    <ProjectReference Include="..\SoccerPrediction.Context\SoccerPrediction.Context.csproj" />
+    <ProjectReference Include="..\SoccerPrediction.Repository\SoccerPrediction.Repository.csproj" />
     <ProjectReference Include="..\SoccerPrediction.ViewModel\SoccerPrediction.ViewModel.csproj" />
   </ItemGroup>
 
