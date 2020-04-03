@@ -1,100 +1,83 @@
-﻿using SoccerPrediction.Context;
-using SoccerPrediction.Helper;
+﻿using SoccerPrediction.Helper;
 using SoccerPrediction.Model;
 using SoccerPrediction.Repository;
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
-using System.Text;
+using System.Security;
 using System.Threading.Tasks;
 
-
-[assembly:InternalsVisibleTo("SoccerPrediction.UnitTests")]
+[assembly: InternalsVisibleTo("SoccerPrediction.UnitTests")]
 namespace SoccerPrediction.BusinessLogic
 {
-    
-    public class PeopleLogic : IGenericRepository<Person>
+
+    public class PeopleLogic : BusinessLogicBase
     {
-        internal readonly SPXmlContext Context;
+
+        internal readonly GenericRepository<Person> PersonRep;
 
         public PeopleLogic()
         {
-            using (var ctx = new SPXmlContext(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "xmlFile.xml")))
-            {
-                if (!ctx.HasPessimisticLock) ctx.Seed();
-                Context = ctx;
-            }
+            PersonRep = new GenericRepository<Person>();
         }
 
-        internal PeopleLogic(SPXmlContext ctx)
+        internal PeopleLogic(GenericRepository<Person> personRep)
         {
-            Context = ctx;
+            PersonRep = personRep ?? throw new ArgumentNullException(nameof(personRep));
         }
 
-        public bool Add(Person item)
+        #region Get Methods
+
+        public async Task<bool> ArePersonCredentialsCorrect(string username, SecureString pass)
         {
-            Context.People.Add(item);
-            return Context.SaveChanges();
+            var query = PersonRep.GetAll(true).Include(c => c.Credentials).Where(p => p.Credentials.UserName == username);
+            var person = await PersonRep.FindByAsync(query);
+            if (person.Credentials.EncryptedPassword == pass.Unsecure().GetHash()) return true;
+            return false;
         }
 
-        public async Task<bool> AddAsync(Person item)
+
+
+        public async Task<Person> GetPersonByName(string username)
         {
-            throw new NotImplementedException();
+            return await PersonRep.FindByAsync(GetCompleteData(p => p.Credentials.UserName == username));
         }
 
-        public bool Update(Person item)
+        public async Task<Person> GetPersonById(Guid id)
         {
-            throw new NotImplementedException();
+            return await PersonRep.FindByAsync(PersonRep.GetAll(true).Where(p => p.Id == id));
         }
 
-        public async Task<bool> UpdateAsync(Person item)
+        #endregion
+
+        #region Helper Methods
+
+        internal IQueryable<Person> GetCompleteData(Expression<Func<Person, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return PersonRep.GetAll(true).Where(predicate).Include(p => p.Credentials);
         }
 
-        public bool Delete(Person item)
+        public async Task<bool> HasEntriesAsync()
         {
-            Context.People.Remove(item);
-            return Context.SaveChanges();
+            return await PersonRep.AnyAsync(true);
         }
 
-        public async Task<bool> DeleteAsync(Person item)
+        public async Task<bool> EnsureDbIsCreated(bool seed)
         {
-            throw new NotImplementedException();
+            return await PersonRep.CreateDbIfNotExist(seed).ConfigureAwait(true);
         }
 
-        public Person Get(string username, string pass)
+        #endregion
+
+        #region Overrides
+
+        protected override void Dispose(bool disposing)
         {
-            return Context.People.Where(p => p.Credentials.UserName == username && p.Credentials.EncryptedPassword == pass.GetHash()).FirstOrDefault();
+            base.Dispose(disposing);
+            PersonRep?.Dispose();
         }
 
-        public Person Get(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Person> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<List<Person>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<Person> GetAsync(string username, string pass)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<Person> GetAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        
+        #endregion
     }
 }

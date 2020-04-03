@@ -4,13 +4,13 @@ namespace SoccerPrediction.BusinessLogic
 {
     public class BusinessLogicBase : IDisposable
     {
-        private bool _disposedValue;
+        private bool disposedValue;
         protected virtual void Dispose(bool disposing)
         {
-            if (!_disposedValue)
+            if (!disposedValue)
                 if (disposing)
                 { }
-            _disposedValue = true;
+            disposedValue = true;
         }
 
         public void Dispose()

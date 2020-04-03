@@ -1,23 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace SoccerPrediction.Repository
 {
     public interface IGenericRepository<T>
     {
-        bool Add(T item);
-        Task<bool> AddAsync(T item);
-        bool Update(T item);
-        Task<bool> UpdateAsync(T item);
-        bool Delete(T item);
-        Task<bool> DeleteAsync(T item);
-        T Get(string username, string pass);
-        Task<T> GetAsync(string username, string pass);
-        T Get(int id);
-        Task<T> GetAsync(int id);
-        List<T> GetAll();
-        Task<List<T>> GetAllAsync();
+        object Context { get; set; }
 
+        Task<bool> AnyAsync(bool includeDeleted = false);
+        void AddOrUpdate(T item);
+        void Delete(T item);
+        IQueryable<T> GetAll(bool tracking = false);
+        Task<List<T>> GetAsync(IQueryable<T> query);
+        T Find(int id);
+        IQueryable<T> FindBy(Expression<Func<T, bool>> predicate, bool tracking);
+        Task<T> FindByAsync(IQueryable<T> query);
+        Task<bool> CreateDbIfNotExist(bool doSeeding);
+        int Save();
+        Task<int> SaveAsync();
+
+        IQueryable<T> SetTracking(bool tracking, IQueryable<T> query);
     }
 }

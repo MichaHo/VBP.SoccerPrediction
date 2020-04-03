@@ -152,7 +152,7 @@ namespace SoccerPrediction.Context
                 People.Add(new Person() { FirstName = "Hans", LastName = "Muster", Credentials = new AccessData() { UserName = "hmuster", EncryptedPassword = "pass".GetHash(), IsAdmin = true } });
                 People.Add(new Person() { FirstName = "Herbert", LastName = "Muster2", Credentials = new AccessData() { UserName = "hmuster2", EncryptedPassword = "pass2".GetHash(), IsAdmin = false } });
             }
-            if(Teams.Any())
+            if(!Teams.Any())
             {
                 Teams.Add(new Team() { Name = "Eintracht Frankfurt" });
                 Teams.Add(new Team() { Name = "Schalke 04" });

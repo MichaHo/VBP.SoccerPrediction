@@ -52,7 +52,7 @@ namespace SoccerPrediction.ViewModel
         {
             _displayText = "Login Seite";
             _peopleLogic = new PeopleLogic();
-            LogInCommand = new RelayCommand(async (param) => await LoginAsync(param));
+            InitVm();
         }
 
         public LoginViewModel(string displayText)
@@ -81,15 +81,19 @@ namespace SoccerPrediction.ViewModel
             await RunCommandAsync(() => VmIsBusy, async () =>
             {
                 var user = UserName;
-                var pass = (parameter as IHavePassword).SecurePassword.Unsecure();
+                var pass = (parameter as IHavePassword).SecurePassword;
                 //TODO: PeopleLogic erstellen und Methode für das auslesen einer Person mit übergebenen Zugangsdaten erstellen
-                Person person =  _peopleLogic.Get(user, pass);
-                if (person != null)
+                bool isLoginCorrect = await _peopleLogic.ArePersonCredentialsCorrect(user, pass);
+                
+                if (isLoginCorrect)
                 {
                     // Erfolgreich
                     //TODO: Person in eine Instanz schreiben, damit Zugriff auf Personen Infos besteht
                     IWindowService _winService = ServiceContainer.GetService<IWindowService>();
+                    //TODO: LoginFenster schließen
+                    //_winService.CloseWindow(this);
                     _winService.OpenWindow("mainWindow", new MainWorkspace(), null);
+
 
                 }
                 else
@@ -103,13 +107,21 @@ namespace SoccerPrediction.ViewModel
 
 
         #endregion
-        public bool CanLogin()
+        public async Task<bool> CanLogin()
         {
             ///Die BL fragen ob UserName und Kennwort korrekt sind (die entschlüsselung am besten auch über z.b. einen Helper im BL Projekt machen lassen.
             ///Eine entschlüsselung ist ja auch logik und gehört also dort hin.
-            
-            var person = _peopleLogic.Get(UserName, Password);
-            return person != null;
+
+            return await _peopleLogic.ArePersonCredentialsCorrect(UserName, Password.Secure());
+        }
+
+
+
+        internal async void InitVm()
+        {
+            //TODO: das Erstellen der DB gehört in den MainWorkspace, zum testen mal hier eingefügt. 
+            await _peopleLogic.EnsureDbIsCreated(true).ConfigureAwait(true);
+            LogInCommand = new RelayCommand(async (param) => await LoginAsync(param));
         }
 
         #region "IViewModelValidation"
